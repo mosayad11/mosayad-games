@@ -1,0 +1,179 @@
+// ==========================
+// Elements
+// ==========================
+
+const gamesContainer = document.getElementById("games-container");
+const searchInput = document.getElementById("search");
+
+let games = [];
+
+
+// ==========================
+// Load Games
+// ==========================
+
+async function loadGames() {
+
+    try {
+
+        const response = await fetch("js/games.json");
+
+        games = await response.json();
+
+        displayGames(games);
+
+    }
+
+    catch (error) {
+
+        gamesContainer.innerHTML = `
+            <h2 style="text-align:center;">
+                Failed to load games.
+            </h2>
+        `;
+
+        console.error(error);
+
+    }
+
+}
+
+
+// ==========================
+// Display Games
+// ==========================
+
+function displayGames(list) {
+
+    gamesContainer.innerHTML = "";
+
+    if (list.length === 0) {
+
+        gamesContainer.innerHTML = `
+            <h2 style="text-align:center;">
+                No games found.
+            </h2>
+        `;
+
+        return;
+
+    }
+
+    list.forEach(game => {
+
+        gamesContainer.innerHTML += `
+
+        <div class="game-card">
+
+            <img src="${game.image}" alt="${game.name}">
+
+            <h2>${game.name}</h2>
+
+            <p>${game.description}</p>
+
+            <div class="game-info">
+
+                <span>Version ${game.version}</span>
+
+                <span>${game.size}</span>
+
+            </div>
+
+            <div class="buttons">
+
+                <a
+                    class="download"
+                    href="${game.download}"
+                    download>
+
+                    Download
+
+                </a>
+
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+
+// ==========================
+// Search
+// ==========================
+
+searchInput.addEventListener("input", () => {
+
+    const value = searchInput.value.toLowerCase();
+
+    const filteredGames = games.filter(game =>
+
+        game.name.toLowerCase().includes(value) ||
+
+        game.description.toLowerCase().includes(value)
+
+    );
+
+    displayGames(filteredGames);
+
+});
+
+// ==========================
+// Theme
+// ==========================
+
+const themeBtn = document.getElementById("theme-btn");
+
+const savedTheme = localStorage.getItem("theme");
+
+if(savedTheme==="light"){
+
+    document.body.classList.add("light-theme");
+
+    themeBtn.textContent="🌙";
+
+}
+
+else{
+
+    themeBtn.textContent="☀️";
+
+}
+
+themeBtn.addEventListener("click",()=>{
+
+    document.body.classList.toggle("light-theme");
+
+    if(document.body.classList.contains("light-theme")){
+
+        localStorage.setItem("theme","light");
+
+        themeBtn.textContent="🌙";
+
+    }
+
+    else{
+
+        localStorage.setItem("theme","dark");
+
+        themeBtn.textContent="☀️";
+
+    }
+
+});
+window.addEventListener("load", () => {
+
+    const loader = document.getElementById("loader");
+
+    loader.classList.add("hide");
+
+});
+
+// ==========================
+// Start
+// ==========================
+
+loadGames();
