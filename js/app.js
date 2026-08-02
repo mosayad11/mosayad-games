@@ -5,8 +5,50 @@
 const gamesContainer = document.getElementById("games-container");
 const searchInput = document.getElementById("search");
 
+const clickSound = document.getElementById("click-sound");
+const hoverSound = document.getElementById("hover-sound");
+const soundBtn = document.getElementById("sound-btn");
+
+let soundEnabled = true;
+
+clickSound.volume = 0.3;
+hoverSound.volume = 0.15;
+
+
 let games = [];
 
+function playClick() {
+
+    if (!soundEnabled) return;
+
+    clickSound.currentTime = 0;
+    clickSound.play();
+
+}
+
+
+function setupSounds() {
+
+    document.querySelectorAll("button, a").forEach(element => {
+
+        element.removeEventListener("mouseenter", playHover);
+        element.removeEventListener("click", playClick);
+
+        element.addEventListener("mouseenter", playHover);
+        element.addEventListener("click", playClick);
+
+    });
+
+}
+
+function playHover() {
+
+    if (!soundEnabled) return;
+
+    hoverSound.currentTime = 0;
+    hoverSound.play().catch(() => {});
+
+}
 
 // ==========================
 // Load Games
@@ -97,6 +139,7 @@ function displayGames(list) {
         `;
 
     });
+    setupSounds();
 
 }
 
@@ -172,6 +215,19 @@ window.addEventListener("load", () => {
 
 });
 
+
+soundBtn.addEventListener("click", () => {
+
+    if (soundEnabled) {
+        clickSound.currentTime = 0;
+        clickSound.play().catch(() => {});
+    }
+
+    soundEnabled = !soundEnabled;
+
+    soundBtn.textContent = soundEnabled ? "🔊" : "🔇";
+
+});
 // ==========================
 // Start
 // ==========================
