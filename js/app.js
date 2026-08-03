@@ -1,5 +1,13 @@
 import { db } from "./firebase.js";
 
+import {
+    collection,
+    getDocs,
+    doc,
+    updateDoc,
+    increment
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+
 // ==========================
 // Elements
 // ==========================
@@ -18,6 +26,28 @@ hoverSound.volume = 0.15;
 
 
 let games = [];
+
+async function increaseDownloads(gameId) {
+
+    try {
+
+        const gameRef = doc(db, "games", gameId);
+
+        await updateDoc(gameRef, {
+
+            downloads: increment(1)
+
+        });
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+    }
+
+}
 
 function playClick() {
 
@@ -43,7 +73,7 @@ function setupSounds() {
 
     document.querySelectorAll(".download").forEach(button => {
 
-        button.onclick = (e) => {
+        button.onclick = async (e) => {
 
             if (
                 isMobile() &&
@@ -57,10 +87,15 @@ function setupSounds() {
                 if (!ok) {
 
                     e.preventDefault();
+                    return;
 
                 }
 
             }
+
+            await increaseDownloads(button.dataset.id);
+
+            window.location.href = button.href;
 
         };
 
@@ -94,6 +129,31 @@ async function loadGames() {
         const response = await fetch("js/games.json");
 
         games = await response.json();
+        const snapshot = await getDocs(collection(db, "games"));
+
+        const firebaseGames = {};
+
+        snapshot.forEach(doc => {
+
+            firebaseGames[doc.id] = doc.data();
+
+        });
+
+        games.forEach(game => {
+
+            if (firebaseGames[game.id]) {
+
+                game.downloads = firebaseGames[game.id].downloads;
+                game.likes = firebaseGames[game.id].likes;
+
+            } else {
+
+                game.downloads = 0;
+                game.likes = 0;
+
+            }
+
+        });
 
         displayGames(games);
 
@@ -168,6 +228,7 @@ function displayGames(list) {
                     class="download"
                     href="${game.download}"
                     data-platform="${game.platform}"
+                    data-id="${game.id}"
                     download>
 
                     Download
