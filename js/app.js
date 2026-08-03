@@ -1,8 +1,6 @@
 import { db } from "./firebase.js";
 
 import {
-    collection,
-    getDocs,
     doc,
     updateDoc,
     increment
@@ -85,6 +83,8 @@ function setupSounds() {
                 );
 
                 if (!ok) {
+                    button.disabled = false;
+                    button.style.pointerEvents = "auto";
 
                     e.preventDefault();
                     return;
@@ -93,10 +93,15 @@ function setupSounds() {
 
             }
 
-            await increaseDownloads(button.dataset.id);
-
-            window.location.href = button.href;
-
+            try {
+                await increaseDownloads(button.dataset.id);
+            }
+            catch (error) {
+                console.error(error);
+            }
+            finally {
+                window.location.href = button.href;
+            }
         };
 
     });
@@ -129,31 +134,7 @@ async function loadGames() {
         const response = await fetch("js/games.json");
 
         games = await response.json();
-        const snapshot = await getDocs(collection(db, "games"));
 
-        const firebaseGames = {};
-
-        snapshot.forEach(doc => {
-
-            firebaseGames[doc.id] = doc.data();
-
-        });
-
-        games.forEach(game => {
-
-            if (firebaseGames[game.id]) {
-
-                game.downloads = firebaseGames[game.id].downloads;
-                game.likes = firebaseGames[game.id].likes;
-
-            } else {
-
-                game.downloads = 0;
-                game.likes = 0;
-
-            }
-
-        });
 
         displayGames(games);
 
