@@ -1210,7 +1210,23 @@ input{
 
 }
 
+.platform{
 
+    margin-top:10px;
+
+    font-weight:bold;
+
+}
+
+.downloads{
+
+    color:#00c853;
+
+    font-weight:bold;
+
+    margin:8px 0;
+
+}
 /*==================================================
                 SMOOTH TRANSITIONS
 ==================================================*/

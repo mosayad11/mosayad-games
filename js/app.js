@@ -1,3 +1,5 @@
+import { db } from "./firebase.js";
+
 // ==========================
 // Elements
 // ==========================
@@ -39,6 +41,31 @@ function setupSounds() {
 
     });
 
+    document.querySelectorAll(".download").forEach(button => {
+
+        button.onclick = (e) => {
+
+            if (
+                isMobile() &&
+                button.dataset.platform === "Windows"
+            ) {
+
+                const ok = confirm(
+                    "⚠️ This game is for PC.\n\nIt may not run on your device.\n\nDo you want to continue?"
+                );
+
+                if (!ok) {
+
+                    e.preventDefault();
+
+                }
+
+            }
+
+        };
+
+    });
+
 }
 
 function playHover() {
@@ -47,6 +74,12 @@ function playHover() {
 
     hoverSound.currentTime = 0;
     hoverSound.play().catch(() => {});
+
+}
+
+function isMobile() {
+
+    return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile/i.test(navigator.userAgent);
 
 }
 
@@ -121,11 +154,20 @@ function displayGames(list) {
 
             </div>
 
+            <div class="platform">
+                <span>💻 ${game.platform}</span>
+            </div>
+
+            <p class="downloads">
+                <span>⬇️ ${game.downloads} Downloads</span>
+            </p>
+
             <div class="buttons">
 
                 <a
                     class="download"
                     href="${game.download}"
+                    data-platform="${game.platform}"
                     download>
 
                     Download
