@@ -1,10 +1,3 @@
-import { db } from "./firebase.js";
-
-import {
-    doc,
-    updateDoc,
-    increment
-} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
 // ==========================
 // Elements
@@ -24,28 +17,6 @@ hoverSound.volume = 0.15;
 
 
 let games = [];
-
-async function increaseDownloads(gameId) {
-
-    try {
-
-        const gameRef = doc(db, "games", gameId);
-
-        await updateDoc(gameRef, {
-
-            downloads: increment(1)
-
-        });
-
-    }
-
-    catch (error) {
-
-        console.error(error);
-
-    }
-
-}
 
 function playClick() {
 
@@ -69,43 +40,6 @@ function setupSounds() {
 
     });
 
-    document.querySelectorAll(".download").forEach(button => {
-
-        button.onclick = async (e) => {
-
-            if (
-                isMobile() &&
-                button.dataset.platform === "Windows"
-            ) {
-
-                const ok = confirm(
-                    "⚠️ This game is for PC.\n\nIt may not run on your device.\n\nDo you want to continue?"
-                );
-
-                if (!ok) {
-                    button.disabled = false;
-                    button.style.pointerEvents = "auto";
-
-                    e.preventDefault();
-                    return;
-
-                }
-
-            }
-
-            try {
-                await increaseDownloads(button.dataset.id);
-            }
-            catch (error) {
-                console.error(error);
-            }
-            finally {
-                window.location.href = button.href;
-            }
-        };
-
-    });
-
 }
 
 function playHover() {
@@ -117,11 +51,6 @@ function playHover() {
 
 }
 
-function isMobile() {
-
-    return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile/i.test(navigator.userAgent);
-
-}
 
 // ==========================
 // Load Games
@@ -179,7 +108,7 @@ function displayGames(list) {
 
         gamesContainer.innerHTML += `
 
-        <div class="game-card">
+        <a href="game.html?id=${game.id}" class="game-card">
 
             <img src="${game.image}" alt="${game.name}">
 
@@ -195,30 +124,13 @@ function displayGames(list) {
 
             </div>
 
-            <div class="platform">
-                <span>💻 ${game.platform}</span>
-            </div>
+            <p class="platform">
 
-            <p class="downloads">
-                <span>⬇️ ${game.downloads} Downloads</span>
+                <span>💻 ${game.platform}</span>
+
             </p>
 
-            <div class="buttons">
-
-                <a
-                    class="download"
-                    href="${game.download}"
-                    data-platform="${game.platform}"
-                    data-id="${game.id}"
-                    download>
-
-                    Download
-
-                </a>
-
-            </div>
-
-        </div>
+        </a>
 
         `;
 

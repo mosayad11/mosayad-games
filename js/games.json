@@ -6,8 +6,10 @@
         "description": "Classic Snake Game made with Python.",
         "version": "1.0",
         "size": "15.3 MB",
+        "releaseDate": "2026-07-20",
+        "steps":"Snake_Game/ snake game/ dist/ main/ (main.exe)",
         "downloads": "??",
-        "likes": 0,
+        "likes": "??",
         "platform": "Windows",
         "download": "downloads/Snake_Game.zip"
     },
@@ -19,8 +21,10 @@
         "description": "2 Player Ping Pong.",
         "version": "1.0",
         "size": "15.1 MB",
+        "releaseDate": "2026-07-20",
+        "steps":"PingPong/ ping pong/ dist/ main/ (main.exe)",
         "downloads": "??",
-        "likes": 0,
+        "likes": "??",
         "platform": "Windows",
         "download": "downloads/PingPong.zip"
     },
@@ -32,8 +36,10 @@
         "description": "Classic football penalty console game.",
         "version": "1.0",
         "size": "33.1 MB",
+        "releaseDate": "2026-07-20",
+        "steps":"football/ dist/ (career_mode_2.exe)",
         "downloads": "??",
-        "likes": 0,
+        "likes": "??",
         "platform": "Windows",
         "download": "downloads/football.zip"
     }
