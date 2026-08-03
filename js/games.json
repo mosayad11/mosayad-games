@@ -1,33 +1,39 @@
 [
     {
+        "id": "snake",
         "name": "Snake Game",
         "image": "images/snake.png",
         "description": "Classic Snake Game made with Python.",
         "version": "1.0",
         "size": "15.3 MB",
         "downloads": 7,
+        "likes": 0,
         "platform": "Windows",
         "download": "downloads/Snake_Game.zip"
     },
 
     {
+        "id": "ping",
         "name": "Ping Pong",
         "image": "images/pingpong.png",
         "description": "2 Player Ping Pong.",
         "version": "1.0",
         "size": "15.1 MB",
         "downloads": 5,
+        "likes": 0,
         "platform": "Windows",
         "download": "downloads/PingPong.zip"
     },
 
     {
+        "id": "football",
         "name": "Football Champion",
         "image": "images/salah.png",
         "description": "Classic football penalty console game.",
         "version": "1.0",
         "size": "33.1 MB",
         "downloads": 3,
+        "likes": 0,
         "platform": "Windows",
         "download": "downloads/football.zip"
     }
