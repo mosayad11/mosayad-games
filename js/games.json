@@ -1,5 +1,20 @@
 [
     {
+        "id": "cars",
+        "name": "Car Race",
+        "image": "images/car.png",
+        "description": "Classic Car Race Game made with Python.",
+        "version": "1.0",
+        "size": "30.1 MB",
+        "releaseDate": "2026-08-04",
+        "steps":"Car_Game/ car race/ dist/ main/ (main.exe)",
+        "downloads": 0,
+        "likes": 0,
+        "platform": "Windows",
+        "download": "downloads/Car_Game.zip"
+    },
+
+    {
         "id": "snake",
         "name": "Snake Game",
         "image": "images/snake.png",
