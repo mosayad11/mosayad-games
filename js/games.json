@@ -8,8 +8,8 @@
         "size": "15.3 MB",
         "releaseDate": "2026-08-02",
         "steps":"Snake_Game/ snake game/ dist/ main/ (main.exe)",
-        "downloads": "??",
-        "likes": "??",
+        "downloads": 1,
+        "likes": 13,
         "platform": "Windows",
         "download": "downloads/Snake_Game.zip"
     },
@@ -23,8 +23,8 @@
         "size": "15.1 MB",
         "releaseDate": "2026-08-02",
         "steps":"PingPong/ ping pong/ dist/ main/ (main.exe)",
-        "downloads": "??",
-        "likes": "??",
+        "downloads": 1,
+        "likes": 4,
         "platform": "Windows",
         "download": "downloads/PingPong.zip"
     },
@@ -38,8 +38,8 @@
         "size": "33.1 MB",
         "releaseDate": "2026-08-02",
         "steps":"football/ dist/ (career_mode_2.exe)",
-        "downloads": "??",
-        "likes": "??",
+        "downloads": 0,
+        "likes": 0,
         "platform": "Windows",
         "download": "downloads/football.zip"
     }

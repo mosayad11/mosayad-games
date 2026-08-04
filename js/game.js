@@ -32,6 +32,8 @@ const steps = document.getElementById("game-steps");
 
 const likeBtn = document.getElementById("like-btn");
 
+const userId = localStorage.getItem("userId");
+
 const downloadBtn = document.getElementById("download-btn");
 
 const clickSound = document.getElementById("click-sound");
@@ -112,9 +114,9 @@ function showGame() {
 
     release.textContent = currentGame.releaseDate;
 
-    downloads.textContent = currentGame.downloads;
+    downloads.textContent = "??"; //currentGame.downloads;
 
-    likes.textContent = currentGame.likes;
+    likes.textContent = "??"; //currentGame.likes;
 
     steps.textContent = "Exetract the {Folder.zip} then play the game at: " + currentGame.steps;
 
@@ -124,6 +126,15 @@ function showGame() {
 // ==========================
 // Firebase
 // ==========================
+async function increaseUserDownloads() {
+
+    const userRef = doc(db, "users", userId);
+
+    await updateDoc(userRef, {
+        downloads: increment(1)
+    });
+
+}
 
 async function increaseDownloads() {
 
@@ -144,6 +155,15 @@ async function increaseDownloads() {
         console.error(error);
 
     }
+
+}
+async function increaseUserLikes() {
+
+    const userRef = doc(db, "users", userId);
+
+    await updateDoc(userRef, {
+        likes: increment(1)
+    });
 
 }
 
@@ -244,6 +264,7 @@ downloadBtn.addEventListener("click", async (e) => {
     try {
 
         await increaseDownloads();
+        await increaseUserDownloads();
 
     }
 
@@ -270,6 +291,7 @@ likeBtn.addEventListener("click", async () => {
     try {
 
         await increaseLikes();
+        await increaseUserLikes();
 
     }
 
