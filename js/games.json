@@ -24,7 +24,7 @@
         "downloads": 1,
         "likes": 13,
         "platform": "Windows",
-        "download": "downloads/Snake_Game.zip"
+        "download": "downloads/Snake_Game_Setup.exe"
     },
 
     {
@@ -38,7 +38,7 @@
         "downloads": 1,
         "likes": 4,
         "platform": "Windows",
-        "download": "downloads/PingPong.zip"
+        "download": "downloads/Ping_Pong_Setup.exe"
     },
 
     {
@@ -52,6 +52,6 @@
         "downloads": 0,
         "likes": 0,
         "platform": "Windows",
-        "download": "downloads/football.zip"
+        "download": "downloads/Football_Game_Setup.exe"
     }
 ]
