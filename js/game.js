@@ -118,7 +118,7 @@ function showGame() {
 
     likes.textContent = "??"; //currentGame.likes;
 
-    steps.textContent = "Open {"+ currentGame.name +" Setup} to install the game...";
+    steps.textContent = "Open {"+ currentGame.download +"} to install the game...";
 
     downloadBtn.href = currentGame.download;
 
