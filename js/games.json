@@ -7,11 +7,10 @@
         "version": "1.0",
         "size": "30.1 MB",
         "releaseDate": "2026-08-04",
-        "steps":"Car_Game/ car race/ dist/ main/ (main.exe)",
         "downloads": 0,
         "likes": 0,
         "platform": "Windows",
-        "download": "downloads/Car_Game.zip"
+        "download": "downloads/Car_Race_Setup.exe"
     },
 
     {
@@ -22,7 +21,6 @@
         "version": "1.0",
         "size": "15.3 MB",
         "releaseDate": "2026-08-02",
-        "steps":"Snake_Game/ snake game/ dist/ main/ (main.exe)",
         "downloads": 1,
         "likes": 13,
         "platform": "Windows",
@@ -37,7 +35,6 @@
         "version": "1.0",
         "size": "15.1 MB",
         "releaseDate": "2026-08-02",
-        "steps":"PingPong/ ping pong/ dist/ main/ (main.exe)",
         "downloads": 1,
         "likes": 4,
         "platform": "Windows",
@@ -52,7 +49,6 @@
         "version": "1.0",
         "size": "33.1 MB",
         "releaseDate": "2026-08-02",
-        "steps":"football/ dist/ (career_mode_2.exe)",
         "downloads": 0,
         "likes": 0,
         "platform": "Windows",
