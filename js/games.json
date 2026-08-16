@@ -1,5 +1,19 @@
 [
     {
+        "id": "maze",
+        "name": "Dark Maze",
+        "image": "images/maze.png",
+        "description": "2D Dark Maze Game made with Python.",
+        "version": "1.0",
+        "size": "68.4 MB",
+        "releaseDate": "2026-08-16",
+        "downloads": 0,
+        "likes": 0,
+        "platform": "Windows",
+        "download": "downloads/Dark_Maze_Setup.exe"
+    },
+
+    {
         "id": "cars",
         "name": "Car Race",
         "image": "images/car.png",
