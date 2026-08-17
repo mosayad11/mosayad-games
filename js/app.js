@@ -4,6 +4,13 @@ if (!localStorage.getItem("userId")) {
 
 }
 
+import { db } from "./firebase.js";
+import {
+    getFirestore,
+    doc,
+    getDoc
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+
 // ==========================
 // Elements
 // ==========================
@@ -22,6 +29,62 @@ hoverSound.volume = 0.15;
 
 
 let games = [];
+
+// ==========================
+// User Greeting
+// ==========================
+
+async function loadUserGreeting() {
+
+    const userNameElement = document.getElementById("user-name");
+
+    if (!userNameElement) return;
+
+    // Default while loading / if something goes wrong
+    userNameElement.textContent = "...";
+
+    const userId = localStorage.getItem("userId");
+
+    if (!userId) {
+        return;
+    }
+
+    try {
+
+        const userRef = doc(
+            db,
+            "users",
+            userId
+        );
+
+        const userSnapshot = await getDoc(userRef);
+
+        if (userSnapshot.exists()) {
+
+            const userData = userSnapshot.data();
+
+            const name = userData.name;
+
+            if (name && name.trim()) {
+
+                userNameElement.textContent =
+                    name.charAt(0).toUpperCase() +
+                    name.slice(1);
+
+            }
+
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Failed to load user name:",
+            error
+        );
+
+        userNameElement.textContent = "...";
+    }
+}
 
 function playClick() {
 
@@ -234,3 +297,4 @@ soundBtn.addEventListener("click", () => {
 // ==========================
 
 loadGames();
+loadUserGreeting();
