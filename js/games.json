@@ -68,21 +68,7 @@
         "platform": "Windows",
         "download": "downloads/Football_Game_Setup.exe"
     },
-
-    {
-        "id": "halal_os",
-        "name": "SO halal mode OS",
-        "image": "images/halal_os.png",
-        "description": "...",
-        "version": "1.0",
-        "size": "1.1 MB",
-        "releaseDate": "2026-08-19",
-        "downloads": 0,
-        "likes": 0,
-        "platform": "All Platforms",
-        "download": "downloads/SO-halal-mode-OS.zip"
-    },
-
+    
     {
         "id": "ide",
         "name": "Mosayad IDE",
